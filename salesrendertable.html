@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Poultry SaaS</title>
+
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+   <h1>Poultry Feed Sales</h1>
+
+   <!-- FORM -->
+
+   <input
+      type="text"
+      id="customer"
+      placeholder="Customer Name"
+   >
+
+   <input
+      type="number"
+      id="quantity"
+      placeholder="Quantity"
+   >
+
+   <button onclick="saveSale()">
+      Save Sale
+   </button>
+
+   <div id="message"></div>
+
+   <!-- TABLE -->
+
+   <table border="1">
+
+      <thead>
+         <tr>
+            <th>Customer</th>
+            <th>Quantity</th>
+         </tr>
+      </thead>
+
+      <tbody id="salesTable">
+      </tbody>
+
+   </table>
+
+   <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Poultry ERP</title>
+
+   <link rel="stylesheet"
+   href="style.css">
+</head>
+
+<body>
+
+   <h1>Poultry ERP Dashboard</h1>
+
+
+   <!-- DASHBOARD -->
+
+   <div class="dashboard">
+
+      <div class="card">
+         <h3>Total Revenue</h3>
+         <h2 id="totalRevenue">0</h2>
+      </div>
+
+      <div class="card">
+         <h3>Total Expenses</h3>
+         <h2 id="totalExpenses">0</h2>
+      </div>
+
+      <div class="card">
+         <h3>Profit</h3>
+         <h2 id="profit">0</h2>
+      </div>
+
+      <div class="card">
+         <h3>Total Quantity Sold</h3>
+         <h2 id="totalQuantity">0</h2>
+      </div>
+
+   </div>
+
+
+
+   <!-- SALES FORM -->
+
+   <h2>Sales Form</h2>
+
+   <input
+      type="text"
+      id="customer"
+      placeholder="Customer Name"
+   >
+
+   <input
+      type="number"
+      id="quantity"
+      placeholder="Quantity"
+   >
+
+   <input
+      type="number"
+      id="unitPrice"
+      placeholder="Unit Price"
+   >
+
+   <button onclick="saveSale()">
+      Save Sale
+   </button>
+
+
+
+   <!-- EXPENSE FORM -->
+
+   <h2>Expense Form</h2>
+
+   <input
+      type="text"
+      id="expenseTitle"
+      placeholder="Expense Title"
+   >
+
+   <input
+      type="number"
+      id="expenseAmount"
+      placeholder="Amount"
+   >
+
+   <button onclick="saveExpense()">
+      Save Expense
+   </button>
+
+
+
+   <!-- SALES TABLE -->
+
+   <h2>Sales Table</h2>
+
+   <table border="1">
+
+      <thead>
+         <tr>
+            <th>Customer</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+         </tr>
+      </thead>
+
+      <tbody id="salesTable">
+
+      </tbody>
+
+   </table>
+
+
+
+   <!-- EXPENSE TABLE -->
+
+   <h2>Expense Table</h2>
+
+   <table border="1">
+
+      <thead>
+         <tr>
+            <th>Title</th>
+            <th>Amount</th>
+         </tr>
+      </thead>
+
+      <tbody id="expensesTable">
+
+      </tbody>
+
+   </table>
+
+
+   <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gansu Poultry Intelligence System</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#07130b;
+    color:white;
+    overflow-x:hidden;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* ==========================
+NAVBAR
+========================== */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.25);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:1.7rem;
+    font-weight:800;
+    color:#59ff9b;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#59ff9b;
+}
+
+.nav-btn{
+    background:linear-gradient(45deg,#14ff72,#09c761);
+    padding:12px 24px;
+    border-radius:50px;
+    color:black;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 0 20px rgba(20,255,114,0.4);
+    transition:0.4s;
+}
+
+.nav-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* ==========================
+HERO SECTION
+========================== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:120px 8% 60px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:#14ff72;
+    filter:blur(180px);
+    opacity:0.18;
+    top:-100px;
+    right:-100px;
+    animation:floatGlow 6s infinite ease-in-out;
+}
+
+@keyframes floatGlow{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(40px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.hero-left{
+    max-width:620px;
+    z-index:10;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:50px;
+    background:rgba(255,255,255,0.05);
+    margin-bottom:25px;
+    color:#9cffbf;
+    animation:fadeUp 1s ease;
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.1;
+    margin-bottom:25px;
+    animation:fadeUp 1.2s ease;
+}
+
+.hero h1 span{
+    color:#59ff9b;
+}
+
+.hero p{
+    color:#cfcfcf;
+    line-height:1.8;
+    font-size:1.1rem;
+    margin-bottom:35px;
+    animation:fadeUp 1.4s ease;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    animation:fadeUp 1.6s ease;
+}
+
+.primary-btn{
+    background:linear-gradient(45deg,#14ff72,#09c761);
+    color:black;
+    padding:16px 32px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 10px 30px rgba(20,255,114,0.3);
+    transition:0.4s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+.secondary-btn{
+    border:1px solid rgba(255,255,255,0.15);
+    padding:16px 32px;
+    border-radius:50px;
+    color:white;
+    text-decoration:none;
+    transition:0.4s;
+}
+
+.secondary-btn:hover{
+    background:white;
+    color:black;
+}
+
+.hero-right{
+    position:relative;
+    width:500px;
+    height:500px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.dashboard-card{
+    width:100%;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:30px;
+    backdrop-filter:blur(18px);
+    padding:30px;
+    animation:floatCard 4s infinite ease-in-out;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+@keyframes floatCard{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.mini-boxes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.mini-box{
+    background:rgba(255,255,255,0.06);
+    padding:20px;
+    border-radius:18px;
+    transition:0.4s;
+}
+
+.mini-box:hover{
+    transform:translateY(-5px);
+    background:rgba(20,255,114,0.1);
+}
+
+.chart{
+    margin-top:25px;
+    height:120px;
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+}
+
+.bar{
+    flex:1;
+    background:linear-gradient(to top,#09c761,#59ff9b);
+    border-radius:10px 10px 0 0;
+    animation:growBar 2s ease;
+}
+
+.bar:nth-child(1){height:50%;}
+.bar:nth-child(2){height:70%;}
+.bar:nth-child(3){height:40%;}
+.bar:nth-child(4){height:90%;}
+.bar:nth-child(5){height:65%;}
+
+@keyframes growBar{
+
+    from{
+        height:0;
+    }
+
+}
+
+/* ==========================
+FEATURES
+========================== */
+
+.features{
+    padding:100px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.section-title h2{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    color:#bcbcbc;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    padding:35px;
+    border-radius:25px;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.feature-card::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(45deg,transparent,rgba(20,255,114,0.1),transparent);
+    top:-100%;
+    left:0;
+    transition:0.6s;
+}
+
+.feature-card:hover::before{
+    top:100%;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    border-color:#14ff72;
+}
+
+.feature-icon{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    margin-bottom:15px;
+}
+
+.feature-card p{
+    color:#cfcfcf;
+    line-height:1.7;
+}
+
+/* ==========================
+CTA
+========================== */
+
+.cta{
+    padding:100px 8%;
+}
+
+.cta-box{
+    background:linear-gradient(135deg,#0f2617,#12361d);
+    border-radius:40px;
+    padding:80px 40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.cta-box::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#14ff72;
+    opacity:0.12;
+    filter:blur(140px);
+    top:-150px;
+    right:-150px;
+}
+
+.cta h2{
+    font-size:3rem;
+    margin-bottom:20px;
+    position:relative;
+}
+
+.cta p{
+    color:#d4d4d4;
+    margin-bottom:35px;
+    position:relative;
+}
+
+/* ==========================
+FOOTER
+========================== */
+
+footer{
+    padding:30px 8%;
+    text-align:center;
+    color:#b5b5b5;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* ==========================
+ANIMATIONS
+========================== */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media(max-width:1000px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:60px;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-right{
+        width:100%;
+        max-width:450px;
+    }
+
+}
+
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:2.3rem;
+    }
+
+    .section-title h2,
+    .cta h2{
+        font-size:2rem;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- ==========================
+NAVBAR
+========================== -->
+
+<nav>
+
+    <div class="logo">
+        GANSU AI FARM
+    </div>
+
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <a href="./pages/register.html" class="nav-btn">
+        Register Now
+    </a>
+
+</nav>
+
+<!-- ==========================
+HERO SECTION
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <div class="hero-badge">
+            Smart Poultry & Feedmill Intelligence Platform
+        </div>
+
+        <h1>
+            Run Your Farm Like a <span>Modern Enterprise</span>
+        </h1>
+
+        <p>
+            Monitor poultry production, feed inventory, mortality,
+            expenses, analytics, subscriptions, and AI-powered farm
+            intelligence from one powerful dashboard.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="./pages/register.html" class="primary-btn">
+                Register Now
+            </a>
+
+            <a href="./pages/login.html" class="secondary-btn">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="dashboard-card">
+
+            <div class="card-top">
+
+                <div>
+                    <h2>Farm Analytics</h2>
+                    <p>Live Monitoring</p>
+                </div>
+
+                <div>
+                    📈
+                </div>
+
+            </div>
+
+            <div class="mini-boxes">
+
+                <div class="mini-box">
+                    <h3>12,450</h3>
+                    <p>Birds</p>
+                </div>
+
+                <div class="mini-box">
+                    <h3>$48K</h3>
+                    <p>Revenue</p>
+                </div>
+
+                <div class="mini-box">
+                    <h3>96%</h3>
+                    <p>Health Rate</p>
+                </div>
+
+                <div class="mini-box">
+                    <h3>1.2T</h3>
+                    <p>Feed Used</p>
+                </div>
+
+            </div>
+
+            <div class="chart">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+FEATURES
+========================== -->
+
+<section class="features reveal" id="features">
+
+    <div class="section-title">
+        <h2>Powerful Features</h2>
+        <p>
+            Everything you need to manage your agricultural business.
+        </p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Real-Time Dashboard</h3>
+            <p>
+                Track expenses, feed usage, bird health, and farm growth instantly.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Analytics</h3>
+            <p>
+                Detect mortality trends, predict losses, and optimize feed performance.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📦</div>
+            <h3>Inventory Tracking</h3>
+            <p>
+                Monitor feedmill inventory, stock levels, and supplier activities.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Responsive</h3>
+            <p>
+                Manage your farm from your mobile device anywhere in the world.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure Cloud System</h3>
+            <p>
+                Authentication, subscriptions, secure database storage, and backups.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Offline First</h3>
+            <p>
+                IndexedDB hybrid storage allows operations even without internet.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+CTA SECTION
+========================== -->
+
+<section class="cta reveal">
+
+    <div class="cta-box">
+
+        <h2>
+            Build The Future Of Smart Farming
+        </h2>
+
+        <p>
+            Join modern farmers using AI-powered management systems to scale faster.
+        </p>
+
+        <a href="./pages/register.html" class="primary-btn">
+            Start Free Trial
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 Gansu Poultry Intelligence System.
+
+</footer>
+
+<script>
+
+// =============================
+// REVEAL ANIMATION
+// =============================
+
+const reveals =
+document.querySelectorAll(
+    ".reveal"
+);
+
+window.addEventListener(
+    "scroll",
+    revealSections
+);
+
+function revealSections(){
+
+    reveals.forEach((section) => {
+
+        const windowHeight =
+        window.innerHeight;
+
+        const revealTop =
+        section.getBoundingClientRect().top;
+
+        const revealPoint = 120;
+
+        if(revealTop < windowHeight - revealPoint){
+
+            section.classList.add(
+                "active"
+            );
+
+        }
+
+    });
+
+}
+
+revealSections();
+
+</script>
+
+</body>
+</html>

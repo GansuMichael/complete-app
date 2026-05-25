@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Poultry Feed Sales</title>
+
+   <link rel="stylesheet"
+   href="style.css">
+</head>
+
+<body>
+
+   <h1>Feed Sales System</h1>
+
+   <!-- FORM -->
+
+   <input
+      type="text"
+      id="customer"
+      placeholder="Customer Name"
+   >
+
+   <input
+      type="number"
+      id="quantity"
+      placeholder="Quantity"
+   >
+
+   <input
+      type="number"
+      id="unitPrice"
+      placeholder="Unit Price"
+   >
+
+   <button onclick="saveSale()">
+      Save Sale
+   </button>
+
+   <div id="message"></div>
+
+   <!-- TABLE -->
+
+   <table border="1">
+
+      <thead>
+         <tr>
+            <th>Customer</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+         </tr>
+      </thead>
+
+      <tbody id="salesTable">
+
+      </tbody>
+
+   </table>
+
+   <script src="app.js"></script>
+
+</body>
+</html>
