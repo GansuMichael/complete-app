@@ -1,7 +1,7 @@
 import {
     getEl,
     formatNumber
-} from "../../utils/helpers.js";
+} from "./helpers.js";
 
 import {
     drawLayersCharts

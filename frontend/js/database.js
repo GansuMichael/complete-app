@@ -1,55 +1,101 @@
+// ============================================
+// DATABASE
+// ============================================
+
 let db;
 
-function initDB() {
+// ============================================
+// OPEN DATABASE
+// ============================================
 
-    return new Promise((resolve, reject) => {
+const request =
+indexedDB.open(
 
-        const request =
-        indexedDB.open("PoultryDB", 1);
+   "GansuDB",
 
-        request.onupgradeneeded = (event) => {
+   1
 
-            db = event.target.result;
+);
 
-            if (
-                !db.objectStoreNames.contains("users")
-            ) {
+// ============================================
+// CREATE TABLES / OBJECT STORES
+// ============================================
 
-                db.createObjectStore(
-                    "users",
-                    {
-                        keyPath:"id",
-                        autoIncrement:true
-                    }
-                );
+request.onupgradeneeded =
+(event) => {
 
-            }
+   db =
+   event.target.result;
 
-        };
+   // AUTH STORE
 
-        request.onsuccess = (event) => {
+   if(
+      !db.objectStoreNames.contains(
+         "auth"
+      )
+   ){
 
-            db = event.target.result;
+      db.createObjectStore(
 
-            resolve();
+         "auth",
 
-        };
+         {
 
-        request.onerror = reject;
+            keyPath: "id"
 
-    });
+         }
 
-}
+      );
 
-async function saveUserOffline(user) {
+   }
 
-    const tx =
-    db.transaction(["users"], "readwrite");
+   // OFFLINE DATA STORE
 
-    const store =
-    tx.objectStore("users");
+   if(
+      !db.objectStoreNames.contains(
+         "offlineData"
+      )
+   ){
 
-    store.add(user);
-}
+      db.createObjectStore(
 
-initDB();
+         "offlineData",
+
+         {
+
+            keyPath: "id",
+            autoIncrement: true
+
+         }
+
+      );
+
+   }
+
+};
+
+// ============================================
+// DATABASE READY
+// ============================================
+
+request.onsuccess =
+(event) => {
+
+   db =
+   event.target.result;
+
+   console.log(
+      "IndexedDB Connected"
+   );
+
+};
+
+request.onerror =
+(event) => {
+
+   console.log(
+      "Database Error",
+      event.target.error
+   );
+
+};

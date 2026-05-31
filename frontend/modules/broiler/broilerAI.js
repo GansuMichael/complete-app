@@ -4,7 +4,7 @@ import {
 
 } from "./broiler.js";
 
-import { getEl } from "../../utils/helpers.js";
+import { getEl } from "./helpers.js";
 
 export function generateBroilerAI() {
 

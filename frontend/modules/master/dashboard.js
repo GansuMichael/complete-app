@@ -1,8 +1,9 @@
 import {
 
-    getAllData
+    addData,
+    getData
 
-} from "../../db/indexeddb.js";
+} from "../../indexeddb.js";
 
 import {
 
@@ -24,17 +25,23 @@ import {
 
 export async function initDashboard() {
 
+    await addData(
+        "FarmDB",
+        "activities",
+        activityRecord
+    );
+
     const broiler =
-    await getAllData("broilerRecords");
+    await getData("broilerRecords");
 
     const layers =
-    await getAllData("layersData");
+    await getData("layersData");
 
     const sales =
-    await getAllData("broilerSales");
+    await getData("broilerSales");
 
     const expenses =
-    await getAllData("broilerExpenses");
+    await getData("broilerExpenses");
 
     const analytics =
     calculateDashboardAnalytics({

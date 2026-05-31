@@ -1,27 +1,27 @@
 import {
     addData,
-    getAllData
-} from "../../db/indexeddb.js";
+    getData
+} from "../../indexeddb.js";
 
 import {
     saveProduction
-} from "../../api/layersApi.js";
+} from "./layersApi.js";
 
 import {
     getEl,
     getNumber
-} from "../../utils/helpers.js";
+} from "./helpers.js";
 
 import {
     renderLayers
 } from "./layersRender.js";
 
-let layersData = [];
+let eggRecord = [];
 
 export async function initLayers() {
 
     layersData =
-    await getAllData("layersProduction");
+    await getData("eggProduction");
 
     renderLayers(layersData);
 }
@@ -83,8 +83,9 @@ export async function addProduction() {
 
     // SAVE OFFLINE
     await addData(
-        "layersProduction",
-        data
+        "PoultryDB",
+        "eggProduction",
+        eggRecord
     );
 
     // SAVE ONLINE

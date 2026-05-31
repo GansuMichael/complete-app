@@ -1,4 +1,4 @@
-import { addData } from "./indexeddb.js";
+import { addData } from "../../indexeddb.js";
 
 import { saveFormula } from "./api.js";
 
@@ -15,10 +15,12 @@ export async function addIngredient() {
     };
 
     // SAVE OFFLINE
-    addData("formula", ingredient);
+    await addData("formula", ingredient);
 
-    // SAVE ONLINE
-    await saveFormula(ingredient);
+        // SAVE ONLINE
+    if (navigator.onLine) {
+        await saveFormula(ingredient);
+    }
 
     renderFormula();
 }

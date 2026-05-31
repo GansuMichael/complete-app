@@ -1,12 +1,12 @@
-import { initDB } from "./db/indexeddb.js";
+import { openDB } from "../../indexeddb.js";
 
 import {
     initDashboard
-} from "./modules/dashboard/dashboard.js";
+} from "./dashboard.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
 
-    await initDB();
+    await openDB(FarmDB);
 
     initDashboard();
 

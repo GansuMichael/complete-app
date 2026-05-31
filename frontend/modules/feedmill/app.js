@@ -1,4 +1,4 @@
-import { initDB } from "./indexeddb.js";
+import { openDB } from "../../indexeddb.js";
 
 import {
     renderFormula
@@ -10,7 +10,7 @@ import {
 
 window.addEventListener("DOMContentLoaded", async () => {
 
-    await initDB();
+    await openDB(FeedmillDB);
 
     renderFormula();
 

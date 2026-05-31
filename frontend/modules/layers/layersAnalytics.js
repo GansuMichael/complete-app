@@ -1,7 +1,7 @@
 import {
     getEl,
     formatNumber
-} from "../../utils/helpers.js";
+} from "./helpers.js";
 
 export function updateAnalytics(data) {
 

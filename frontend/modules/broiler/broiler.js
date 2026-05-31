@@ -1,9 +1,9 @@
 import {
 
     addData,
-    getAllData
+    getData
 
-} from "../../db/indexeddb.js";
+} from "../../indexeddb.js";
 
 import {
 
@@ -11,7 +11,7 @@ import {
     saveSale,
     saveExpense
 
-} from "../../api/broilerApi.js";
+} from "./broilerApi.js";
 
 import {
 
@@ -21,7 +21,7 @@ import {
 
 } from "./broilerRender.js";
 
-import { getEl } from "../../utils/helpers.js";
+import { getEl } from "./helpers.js";
 
 export let broilerRecords = [];
 
@@ -32,13 +32,13 @@ export let broilerExpenses = [];
 export async function initBroiler() {
 
     broilerRecords =
-    await getAllData("broilerRecords");
+    await getData("broilerRecords");
 
     broilerSales =
-    await getAllData("broilerSales");
+    await getData("broilerSales");
 
     broilerExpenses =
-    await getAllData("broilerExpenses");
+    await getData("broilerExpenses");
 
     renderBroiler();
 
@@ -86,9 +86,10 @@ export async function addRecord() {
 
     // OFFLINE SAVE
     await addData(
-        "broilerRecords",
-        record
-    );
+        "BroilerDB",
+        "birds",
+        birdRecord
+    );    
 
     // FIRESTORE SAVE
     await saveRecord(record);

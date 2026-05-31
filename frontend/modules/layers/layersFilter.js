@@ -1,6 +1,6 @@
 import {
     getEl
-} from "../../utils/helpers.js";
+} from "./helpers.js";
 
 export function filterData(data) {
 
