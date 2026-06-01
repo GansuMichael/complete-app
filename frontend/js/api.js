@@ -3,24 +3,73 @@ const BASE_URL =
 
 async function registerUser(data) {
 
-    const response =
+
+const response =
     await fetch(
-
         `${BASE_URL}/register`,
-
         {
+            method: "POST",
 
-            method:"POST",
-
-            headers:{
-                "Content-Type":"application/json"
+            headers: {
+                "Content-Type":
+                    "application/json"
             },
 
-            body:JSON.stringify(data)
-
+            body:
+                JSON.stringify(data)
         }
-
     );
 
-    return response.json();
+const result =
+    await response.json();
+
+if (!response.ok) {
+
+    throw new Error(
+        result.message
+    );
+
 }
+
+return result;
+
+}
+
+async function loginUser(data) {
+
+const response =
+    await fetch(
+        `${BASE_URL}/login`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body:
+                JSON.stringify(data)
+        }
+    );
+
+const result =
+    await response.json();
+
+if (!response.ok) {
+
+    throw new Error(
+        result.message
+    );
+
+}
+
+return result;
+
+}
+
+window.registerUser =
+registerUser;
+
+window.loginUser =
+loginUser;

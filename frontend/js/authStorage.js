@@ -1,46 +1,64 @@
-async function saveAuth(token,user){
+async function saveUserOffline(user) {
 
-    const transaction =
-    db.transaction(
-       ['auth'],
-       'readwrite'
-    );
- 
-    const store =
-    transaction.objectStore('auth');
- 
-    store.put({
- 
-       id:1,
-       token,
-       user
- 
+    return new Promise((resolve, reject) => {
+    
+        const transaction =
+            db.transaction(
+                ["auth"],
+                "readwrite"
+            );
+    
+        const store =
+            transaction.objectStore("auth");
+    
+        const request =
+            store.put({
+    
+                id: 1,
+    
+                user
+    
+            });
+    
+        request.onsuccess =
+            () => resolve(true);
+    
+        request.onerror =
+            () => reject(request.error);
+    
     });
- 
- }
- 
- async function getAuth(){
- 
-    return new Promise((resolve)=>{
- 
-       const transaction =
-       db.transaction(
-          ['auth'],
-          'readonly'
-       );
- 
-       const store =
-       transaction.objectStore('auth');
- 
-       const request =
-       store.get(1);
- 
-       request.onsuccess = ()=>{
- 
-          resolve(request.result);
- 
-       };
- 
+    
+    }
+    
+    async function getUserOffline() {
+    
+    return new Promise((resolve) => {
+    
+        const transaction =
+            db.transaction(
+                ["auth"],
+                "readonly"
+            );
+    
+        const store =
+            transaction.objectStore("auth");
+    
+        const request =
+            store.get(1);
+    
+        request.onsuccess =
+            () =>
+                resolve(
+                    request.result
+                );
+    
     });
- 
- }
+    
+    }
+    
+    window.saveUserOffline =
+    saveUserOffline;
+    
+    window.getUserOffline =
+    getUserOffline;
+    

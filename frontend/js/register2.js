@@ -1,0 +1,43 @@
+const form =
+document.getElementById("registerForm");
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const user = {
+
+        name:
+        document.getElementById("name").value,
+
+        email:
+        document.getElementById("email").value,
+
+        password:
+        document.getElementById("password").value
+
+    };
+
+    try {
+
+        // SAVE OFFLINE
+        await saveUserOffline(user);
+
+        // SAVE ONLINE
+        const result =
+        await registerUser(user);
+
+        alert(result.message);
+
+        window.location.href =
+        "./login.html";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Registration failed");
+
+    }
+
+});

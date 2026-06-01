@@ -1,101 +1,47 @@
-// ============================================
-// DATABASE
-// ============================================
-
 let db;
 
-// ============================================
-// OPEN DATABASE
-// ============================================
+const request = indexedDB.open("dbName", 1);
 
-const request =
-indexedDB.open(
+request.onupgradeneeded = (event) => {
 
-   "GansuDB",
+db = event.target.result;
 
-   1
+if (!db.objectStoreNames.contains("auth")) {
 
+    db.createObjectStore(
+        "auth",
+        {
+            keyPath: "id"
+        }
+    );
+
+}
+
+};
+
+request.onsuccess = (event) => {
+
+db = event.target.result;
+
+console.log("Database connected");
+
+};
+
+request.onerror = (event) => {
+
+console.error(
+    "Database error:",
+    event.target.error
 );
 
-// ============================================
-// CREATE TABLES / OBJECT STORES
-// ============================================
-
-request.onupgradeneeded =
-(event) => {
-
-   db =
-   event.target.result;
-
-   // AUTH STORE
-
-   if(
-      !db.objectStoreNames.contains(
-         "auth"
-      )
-   ){
-
-      db.createObjectStore(
-
-         "auth",
-
-         {
-
-            keyPath: "id"
-
-         }
-
-      );
-
-   }
-
-   // OFFLINE DATA STORE
-
-   if(
-      !db.objectStoreNames.contains(
-         "offlineData"
-      )
-   ){
-
-      db.createObjectStore(
-
-         "offlineData",
-
-         {
-
-            keyPath: "id",
-            autoIncrement: true
-
-         }
-
-      );
-
-   }
-
 };
 
-// ============================================
-// DATABASE READY
-// ============================================
+request.onsuccess = (event) => {
 
-request.onsuccess =
-(event) => {
+    db = event.target.result;
 
-   db =
-   event.target.result;
+    window.db = db;
 
-   console.log(
-      "IndexedDB Connected"
-   );
-
-};
-
-request.onerror =
-(event) => {
-
-   console.log(
-      "Database Error",
-      event.target.error
-   );
+    console.log("Database connected");
 
 };
