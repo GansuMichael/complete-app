@@ -397,10 +397,33 @@
                   <input id="protein" type="number" placeholder="Protein %">
                   <input id="energy" type="number" placeholder="Energy (kcal)">
                   <input id="fiber" type="number" placeholder="Fiber %">
-    
+
                   <button onclick="addIngredient()">Add</button>
                   <button onclick="resetAllFeedmill()">Reset Entire Feedmill</button>
                   <button onclick="saveFormula()">Save Formula</button>
+    
+                  <table class="table">
+
+                    <thead>
+                
+                        <tr>
+                            <th>ID</th>
+                            <th>Feed Type</th>
+                            <th>Weight</th>
+                            <th>Cost</th>
+                            <th>Protein</th>
+                            <th>Energy</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                
+                    </thead>
+                
+                    <tbody id="formulaTableBody"></tbody>
+                
+                </table>
+
+                
     
                   <h3>Current Formula</h3>
     
@@ -431,6 +454,34 @@
                 <input id="invName" type="name" placeholder="Item">
                 <input id="invQty" type="number" placeholder="Quantity">
                 <input id="invPrice" type="number" placeholder="Unit Price">
+                
+<input id="ingredientName">
+<input id="quantity" type="number">
+<input id="unit">
+<input id="unitCost" type="number">
+<input id="minimumLevel" type="number">
+
+<button id="addInventoryBtn">
+    Add Inventory
+</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Unit Cost</th>
+            <th>Min Level</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody id="inventoryTable"></tbody>
+</table>
+                
+                
                 <button onclick="addInventory()">Add</button>
                 <button onclick="resetInventory()">Reset Inventory</button>
               </div>
@@ -634,6 +685,7 @@
       showModule("masterDashboard");
   });
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/authGuard.js"></script>
     <script src="../js/engine.js"></script>

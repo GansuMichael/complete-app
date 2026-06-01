@@ -51,7 +51,7 @@ export async function addInventory() {
 
     
     // SAVE ONLINE
-    await saveInventory(item);
+    await saveInventory(inventoryItem);
 
     renderInventory();
 }

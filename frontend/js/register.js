@@ -35,8 +35,12 @@ async (e) => {
         );
 
         await saveUserOffline(
-            user
+                "PoultryDB",
+                "auth",
+                user
         );
+
+
 
         console.log(
             "Sending to server..."
